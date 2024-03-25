@@ -6,12 +6,12 @@ import textwrap
 def main():
     parser = argparse.ArgumentParser(
         formatter_class=argparse.RawDescriptionHelpFormatter,
-        description="Validate a FHR metadata file",
+        description="Validate a FHT metadata file",
         epilog=textwrap.dedent(
             """\
                     positional <file> input and output files
                         input files must be:
-                            <input>.gfa  - gfa contining a fhr header
+                            <input>.gfa  - gfa contining a fht header
                             """
         ),
     )
