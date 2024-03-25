@@ -1,10 +1,10 @@
-schema: https://raw.githubusercontent.com/FAIR-bioHeaders/FHR-Specification/main/fhr.json
+schema: https://raw.githubusercontent.com/FAIR-bioHeaders/FHT-Specification/main/fht.json
 schemaVersion: 1
 taxon:
   name: Bombas huntii
   uri: https://identifiers.org/taxonomy:9606
-genome: Bombas huntii
-genomeSynonym:
+transcriptome: Bombas huntii
+transcriptomeSynonym:
   - B. huntii
 version: 0.0.1
 metadataAuthor:
