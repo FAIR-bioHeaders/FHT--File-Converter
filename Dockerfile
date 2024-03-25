@@ -15,4 +15,4 @@ RUN --mount=type=cache,target=$POETRY_CACHE_DIR poetry install --without dev --n
 
 COPY . .
 
-ENTRYPOINT ["poetry", "run", "fhr-convert", "--help"]
+ENTRYPOINT ["poetry", "run", "fht-convert", "--help"]
