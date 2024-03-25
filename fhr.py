@@ -6,11 +6,11 @@ import microdata  # type: ignore
 import yaml
 from jsonschema import validate
 
-with open("fhr_schema.json", "r") as f:
+with open("fht_schema.json", "r") as f:
     schema = json.load(f)
 
 
-class fhr:
+class fht:
 
     def __init__(
         self,
@@ -247,7 +247,7 @@ class fhr:
         end_span = "</span>"
 
         data = (
-            f'<div itemscope itemtype="https://raw.githubusercontent.com/FAIR-bioHeaders/FHR-Specification/main/fhr.json" version="{self.schemaVersion}">'
+            f'<div itemscope itemtype="https://raw.githubusercontent.com/FAIR-bioHeaders/FHT-Specification/main/fht.json" version="{self.schemaVersion}">'
             f'<span itemprop="schema">{self.schema}</span>'
             f'<span itemprop="schemaVersion">{self.schemaVersion}</span>'
             f'<span itemprop="version">{self.version}</span>'
@@ -447,6 +447,6 @@ class fhr:
 
         return data
 
-    def fhr_validate(self) -> None:
-        fhr_instance = json.dumps(self.__dict__)
-        validate(instance=fhr_instance, schema=schema)
+    def fht_validate(self) -> None:
+        fht_instance = json.dumps(self.__dict__)
+        validate(instance=fht_instance, schema=schema)
