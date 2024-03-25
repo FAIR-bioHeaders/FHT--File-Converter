@@ -5,18 +5,18 @@ import re
 import sys
 import textwrap
 
-from fhr import fhr
+from fht import fht
 
 
 def main():
     parser = argparse.ArgumentParser(
         formatter_class=argparse.RawDescriptionHelpFormatter,
-        description="Validate a FHR metadata file",
+        description="Validate a FHT metadata file",
         epilog=textwrap.dedent(
             """\
                     positional <file> input and output files
                         input files must be:
-                            <input>.fasta  - fasta contining a fhr header
+                            <input>.fasta  - fasta contining a fht header
                             """
         ),
     )
@@ -29,7 +29,7 @@ def main():
 
     args = parser.parse_args()
 
-    fhr_to_be_validated = fhr()
+    fht_to_be_validated = fht()
 
     input_filepath = args.file[0]
 
@@ -37,7 +37,7 @@ def main():
         if input_filepath.endswith(".yml") or input_filepath.endswith(".yaml"):
             sys.exit("Input file not of correct extention")
         elif input_filepath.endswith(".fasta") or input_filepath.endswith(".fa"):
-            fhr_to_be_validated.input_fasta(input_file)
+            fht_to_be_validated.input_fasta(input_file)
         elif input_filepath.endswith(".json"):
             sys.exit("Input file not of correct extention")
         elif input_filepath.endswith(".html"):
@@ -56,7 +56,7 @@ def main():
         data = file_to_check.read()
         md5_returned = hashlib.md5(data).hexdigest()
 
-    if fhr_to_be_validated.checksum == md5_returned:
+    if fht_to_be_validated.checksum == md5_returned:
         print("Checksum verified.")
     else:
         print("Checksum verification failed!")
