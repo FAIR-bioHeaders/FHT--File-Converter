@@ -5,18 +5,18 @@ import re
 import sys
 import textwrap
 
-from fhr import fhr
+from fht import fht
 
 
 def main():
     parser = argparse.ArgumentParser(
         formatter_class=argparse.RawDescriptionHelpFormatter,
-        description="Validate a FHR metadata file",
+        description="Validate a FHT metadata file",
         epilog=textwrap.dedent(
             """\
                     positional <file> input and output files
                         input files must be:
-                            <input>.gfa  - gfa contining a fhr header
+                            <input>.gfa  - gfa contining a fht header
                             """
         ),
     )
@@ -29,7 +29,7 @@ def main():
 
     args = parser.parse_args()
 
-    fhr_to_be_validated = fhr()
+    fht_to_be_validated = fht()
 
     input_filepath = args.file[0]
 
@@ -43,7 +43,7 @@ def main():
         elif input_filepath.endswith(".html"):
             sys.exit("Input file not of correct extention")
         elif input_filepath.endswith(".gfa"):
-            fhr_to_be_validated.input_gfa(input_file)
+            fht_to_be_validated.input_gfa(input_file)
         else:
             sys.exit("Input file extention not found")
 
@@ -58,7 +58,7 @@ def main():
         data = file_to_check.read()
         md5_returned = hashlib.md5(data).hexdigest()
 
-    if fhr_to_be_validated.checksum == md5_returned:
+    if fht_to_be_validated.checksum == md5_returned:
         print("Checksum verified.")
     else:
         print("Checksum verification failed!")
