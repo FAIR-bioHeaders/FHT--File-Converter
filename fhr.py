@@ -17,7 +17,7 @@ class fht:
         schema: str = "",
         version: str = "",
         schemaVersion: int = 0,
-        genome: str = "",
+        transcriptome: str = "",
         assemblySoftware: str = "",
         voucherSpecimen: str = "",
         dateCreated: str = "",
@@ -31,8 +31,8 @@ class fht:
         self.schema: str = schema
         self.version: str = version
         self.schemaVersion: int = schemaVersion
-        self.genome: str = genome
-        self.genomeSynonym: List[str] = []
+        self.transcriptome: str = transcriptome
+        self.transcriptomeSynonym: List[str] = []
         self.metadataAuthor: List[Dict[str, str]] = []
         self.assemblyAuthor: List[Dict[str, str]] = []
         self.accessionID: Dict[str, str] = {}
@@ -56,7 +56,7 @@ class fht:
         self.schema = data["schema"]
         self.version = data["version"]
         self.schemaVersion = data["schemaVersion"]
-        self.genome = data["genome"]
+        self.transcriptome = data["transcriptome"]
         self.taxon["name"] = data["taxon"]["name"]
         self.taxon["uri"] = data["taxon"]["uri"]
         self.metadataAuthor = data["metadataAuthor"]
@@ -66,9 +66,9 @@ class fht:
         self.checksum = data["checksum"]
 
         try:
-            self.genomeSynonym = data["genomeSynonym"]
+            self.transcriptomeSynonym = data["transcriptomeSynonym"]
         except KeyError:
-            self.genomeSynonym = None
+            self.transcriptomeSynonym = None
 
         try:
             self.accessionID["url"] = data["accessionID"]["url"]
@@ -166,9 +166,9 @@ class fht:
         data = (
             f";~schema: {self.schema}\n"
             f";~schemaVersion: {self.schemaVersion}\n"
-            f";~genome: {self.genome}\n"
-            f";~genomeSynonym:\n"
-            f"{array + array.join(x + end_span for x in self.genomeSynonym)}"
+            f";~transcriptome: {self.transcriptome}\n"
+            f";~transcriptomeSynonym:\n"
+            f"{array + array.join(x + end_span for x in self.transcriptomeSynonym)}"
             f";~version: {self.version}\n"
             f";~metadataAuthor:"
             f'{name + name.join(name + x["name"] + uri + x["uri"] for x in self.metadataAuthor)}'
@@ -214,8 +214,8 @@ class fht:
         self.schema = data.schema
         self.version = data.version
         self.schemaVersion = data.schemaVersion
-        self.genome = data.genome
-        self.genomeSynonym = data.get_all("genomeSynonym")
+        self.transcriptome = data.transcriptome
+        self.transcriptomeSynonym = data.get_all("transcriptomeSynonym")
         self.metadataAuthor = data.get_all("metadataAuthor")
         self.assemblyAuthor = data.get_all("assemblyAuthor")
         self.accessionID = data.get_all("accessionID")
@@ -241,7 +241,7 @@ class fht:
         funding = '<span itemprop="funding">'
         metadataAuthor = '<span itemprop="metadataAuthor">'
         assemblyAuthor = '<span itemprop="assemblyAuthor">'
-        genomeSynonym = '<span itemprop="genomeSynonym">'
+        transcriptomeSynonym = '<span itemprop="transcriptomeSynonym">'
         name = '<span itemprop="name">'
         uri = '<span itemprop="uri">'
         end_span = "</span>"
@@ -251,8 +251,8 @@ class fht:
             f'<span itemprop="schema">{self.schema}</span>'
             f'<span itemprop="schemaVersion">{self.schemaVersion}</span>'
             f'<span itemprop="version">{self.version}</span>'
-            f'<span itemprop="genome">{self.genome}</span>'
-            f"{genomeSynonym + genomeSynonym.join(x + end_span for x in self.genomeSynonym)}"
+            f'<span itemprop="transcriptome">{self.transcriptome}</span>'
+            f"{transcriptomeSynonym + transcriptomeSynonym.join(x + end_span for x in self.transcriptomeSynonym)}"
             f'{metadataAuthor + metadataAuthor.join(name + x["name"] + end_span + uri + x["uri"] + end_span for x in self.metadataAuthor)}'
             f"</span>"
             f'{assemblyAuthor + assemblyAuthor.join(name + x["name"] + end_span + uri + x["uri"] + end_span for x in self.assemblyAuthor)}'
@@ -296,7 +296,7 @@ class fht:
         self.schema = data["schema"]
         self.version = data["version"]
         self.schemaVersion = data["schemaVersion"]
-        self.genome = data["genome"]
+        self.transcriptome = data["transcriptome"]
         self.taxon["name"] = data["taxon"]["name"]
         self.taxon["uri"] = data["taxon"]["uri"]
         self.metadataAuthor = data["metadataAuthor"]
@@ -305,9 +305,9 @@ class fht:
         self.masking = data["masking"]
         self.checksum = data["checksum"]
         try:
-            self.genomeSynonym = data["genomeSynonym"]
+            self.transcriptomeSynonym = data["transcriptomeSynonym"]
         except KeyError:
-            self.genomeSynonym = None
+            self.transcriptomeSynonym = None
 
         try:
             self.accessionID["url"] = data["accessionID"]["url"]
@@ -405,9 +405,9 @@ class fht:
         data = (
             f"#~schema: {self.schema}\n"
             f"#~schemaVersion: {self.schemaVersion}\n"
-            f"#~genome: {self.genome}\n"
-            f"#~genomeSynonym:\n"
-            f"{array + array.join(x + end_span for x in self.genomeSynonym)}"
+            f"#~transcriptome: {self.transcriptome}\n"
+            f"#~transcriptomeSynonym:\n"
+            f"{array + array.join(x + end_span for x in self.transcriptomeSynonym)}"
             f"#~version: {self.version}\n"
             f"#~metadataAuthor:"
             f'{name + name.join(name + x["name"] + uri + x["uri"] for x in self.metadataAuthor)}'
